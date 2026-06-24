@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter08/database/Database.dart';
 import 'package:flutter08/model/ServiceOrder.dart';
 import 'package:flutter08/screens/Cadastro_order_modal.dart';
+import 'package:flutter08/screens/client_screen.dart';
 import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,6 +26,37 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              child: Text(
+                'TechService',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Painel de Atividades'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.people),
+              title: const Text('Painel de Clientes'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ClientScreen()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text('TechService Home'),
         backgroundColor: Theme.of(context).colorScheme.primary,
